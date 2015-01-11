@@ -24,7 +24,7 @@ function runAllFourLineTests () {
 
 		local expectedFormatted=$(echo "$expected" | jq '.')
 
-		local output=$(echo "$input" | jq -f <(echo "$code" | cat "$fileUnderTest" -))
+		local output=$(echo "$input" | jqnpm execute -f <(echo "$code" | cat "$fileUnderTest" -))
 
 		assertEquals "${title}: ${description}" "$expectedFormatted" "$output"
 

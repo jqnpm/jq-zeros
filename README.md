@@ -20,8 +20,26 @@ jqnpm install joelpurra/jq-zeros
 ```jq
 import "joelpurra/jq-zeros" as Zeros;
 
-# Zeros::myFirstFunction
-"World" | Zeros::myFirstFunction		# "Hello World!"
+# Zeros::pad: Can pad both integer and fractions.
+1.1 | Zeros::pad(3; 3) # "001.100"
+
+# Zeros::pad: Can pad both integer and fractions.
+12345.54321 | Zeros::pad(3; 3) # "12345.54321"
+
+# Zeros::pad: Can pad both negative integer and fractions.
+-1.1 | Zeros::pad(3; 3) # "-001.100"
+
+# Zeros::pad: Can pad both negative integer and fractions.
+-12345.54321 | Zeros::pad(3; 3) # "-12345.54321"
+
+# Zeros::pad: Can pad both integer and fractions without fractions.
+1 | Zeros::pad(3; 3) # "001.000"
+
+# Zeros::pad: Can pad both negative integer and fractions without fractions.
+-1 | Zeros::pad(3; 3) # "-001.000"
+
+# Zeros::integer: Can pad single digit number to 3 digits.
+1 | Zeros::integer(3) # "001"
 ```
 
 

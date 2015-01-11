@@ -13,7 +13,11 @@
         "type": "git",
         "url": "git://github.com/joelpurra/jq-zeros.git"
     },
-    "dependencies": {},
+    "dependencies": {
+        "joelpurra/jq-dry": "^0.1.0",
+        "joelpurra/jq-stress": "^0.1.2",
+        "joelpurra/jq-bugfix-jq-552": "^0.1.0"
+    },
     "engines": {
         "jq": "^1.5.0",
         "jqnpm": "^1.0.0"

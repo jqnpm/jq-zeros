@@ -1,8 +1,75 @@
-# Write your jq script here!
-#
-# You can import any depedencies defined in 'jq.json' like this:
-#import "joelpurra/jq-object-sorting" as ObjectSorting;
+import "joelpurra/jq-dry" as DRY;
+import "joelpurra/jq-stress" as Stress;
+import "joelpurra/jq-bugfix-jq-552" as BugfixJq552;
 
-def myFirstFunction:
-	. as $name
-	| "Hello \($name)!";
+
+def zeros($n):
+	""
+	| DRY::addition($n; "0");
+
+# TODO: Check that input is a number.
+# TODO: Check that there are no decimal points.
+def integer($n):
+	tostring as $str
+	| if ($str | Stress::remove("-") | length) >= $n then
+		$str
+	else
+		(
+			# Special handling for negative zero.
+			if . < 0 or $str == "-0" then
+				"-"
+			else
+				""
+			end
+		) as $sign
+		# Special handling for negative zero.
+		| if . < 0 or $str == "-0"  then
+			. * -1
+		else
+			.
+		end
+		| tostring as $positiveStr
+		| (
+			zeros($n)
+			+ $positiveStr
+		)
+		| (
+			$sign
+			+ .[-1 * $n:]
+		)
+	end;
+
+# TODO: Check that input is a number.
+# TODO: Check that there are no negative numbers nor decimal points.
+def fractions($n):
+	tostring
+	| Stress::esrever
+	| tonumber
+	| integer($n)
+	| Stress::esrever;
+
+# TODO: Check that input is a number.
+def pad($n; $m):
+	tostring
+	| split(".")
+	| .[0] |= (if Stress::isNullOrEmpty then (. // 0) else . end)
+	| .[1] |= (if Stress::isNullOrEmpty then (. // 0) else . end)
+	| map(tonumber)
+	| .[0] |= (
+		if . == 0 and $n == 0 then
+			""
+		else
+			integer($n)
+		end
+	)
+	| .[1] |= (
+		if . == 0 and $m == 0 then
+			""
+		else
+			fractions($m)
+		end
+	)
+	# Needs BugfixJq552 so any empty strings will be used in the join.
+	# https://github.com/stedolan/jq/issues/552
+	| BugfixJq552::attemptFixJoin(".")
+	| rtrimstr(".");
