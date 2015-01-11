@@ -1,0 +1,28 @@
+{
+    "name": "zeros",
+    "version": "0.1.0",
+    "description": "Integers and floats as strings, padded with zeros to your liking.",
+    "homepage": "https://github.com/joelpurra/jq-zeros",
+    "bugs": "https://github.com/joelpurra/jq-zeros/issues",
+    "author": {
+        "name": "Joel Purra",
+        "url": "http://joelpurra.com/"
+    },
+    "main": "./jq/main.jq",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/joelpurra/jq-zeros.git"
+    },
+    "dependencies": {},
+    "engines": {
+        "jq": "^1.5.0",
+        "jqnpm": "^1.0.0"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://opensource.org/licenses/MIT"
+    }],
+    "keywords": [
+        "jq-package"
+    ]
+}
