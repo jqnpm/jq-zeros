@@ -1,6 +1,6 @@
 {
     "name": "zeros",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Integers and floats as strings, padded with zeros to your liking.",
     "homepage": "https://github.com/joelpurra/jq-zeros",
     "bugs": "https://github.com/joelpurra/jq-zeros/issues",
@@ -15,8 +15,7 @@
     },
     "dependencies": {
         "joelpurra/jq-dry": "^0.1.0",
-        "joelpurra/jq-stress": "^0.1.2",
-        "joelpurra/jq-bugfix-jq-552": "^0.1.0"
+        "joelpurra/jq-stress": "^0.1.2"
     },
     "engines": {
         "jq": "^1.5.0",

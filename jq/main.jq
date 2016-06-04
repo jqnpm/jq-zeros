@@ -1,6 +1,5 @@
 import "joelpurra/jq-dry" as DRY;
 import "joelpurra/jq-stress" as Stress;
-import "joelpurra/jq-bugfix-jq-552" as BugfixJq552;
 
 
 def zeros($n):
@@ -69,7 +68,5 @@ def pad($n; $m):
 			fractions($m)
 		end
 	)
-	# Needs BugfixJq552 so any empty strings will be used in the join.
-	# https://github.com/stedolan/jq/issues/552
-	| BugfixJq552::attemptFixJoin(".")
+	| join(".")
 	| rtrimstr(".");
