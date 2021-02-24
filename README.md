@@ -47,7 +47,7 @@ import "joelpurra/jq-zeros" as Zeros;
 ---
 
 ## License
-Copyright (c) 2015 Joel Purra <http://joelpurra.com/>
+Copyright (c) 2015 Joel Purra <https://joelpurra.com/>
 All rights reserved.
 
 When using **jq-zeros**, comply to the MIT license. Please see the LICENSE file for details.
